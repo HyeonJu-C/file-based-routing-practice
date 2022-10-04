@@ -10,7 +10,10 @@ export default function UsersPage() {
       <ul>
         {users.map(({ id }) => (
           <li key={`user-page-link-${id}`}>
-            <Link href={`/users/${id}`}>{`${id}'s page`}</Link>
+            {/* ❓ href에 객체를 전달하면, page reload 발생 */}
+            <Link href={{ pathname: '/users/[id]', query: { id } }}>
+              {`${id}'s page`}
+            </Link>
           </li>
         ))}
       </ul>

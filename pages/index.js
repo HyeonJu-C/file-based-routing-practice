@@ -16,6 +16,9 @@ export default function HomePage() {
         <li>
           <Link href="/products">Products page with Link</Link>
         </li>
+        <li>
+          <Link href="users">users page</Link>
+        </li>
       </ul>
     </section>
   )

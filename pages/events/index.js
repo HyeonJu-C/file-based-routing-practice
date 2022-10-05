@@ -1,22 +1,15 @@
 import Link from 'next/link'
-import { useState, useRef } from 'react'
+import { useRouter } from 'next/router'
+import { useRef } from 'react'
 import { events } from '../../pages/index'
 
 export default function Events() {
-  const [allEvents, setAllEvents] = useState([...events])
+  const router = useRouter()
   const yearRef = useRef()
   const monthRef = useRef()
   const handleSubmit = (event) => {
     event.preventDefault()
-    setAllEvents(() =>
-      events.filter(({ date }) => {
-        const year = date.split('-')[0]
-        const month = date.split('-')[1]
-        return (
-          year === yearRef.current.value && month === monthRef.current.value
-        )
-      }),
-    )
+    router.push(`/events/${yearRef.current.value}/${monthRef.current.value}`)
   }
   return (
     <>
@@ -45,13 +38,12 @@ export default function Events() {
         <button type="submit">filter</button>
       </form>
       <ul>
-        {allEvents.map(({ id, title }) => (
+        {events.map(({ id, title }) => (
           <li key={`all-event-${id}`}>
             <Link href={`/events/${id}`}>{title}</Link>
           </li>
         ))}
       </ul>
-      {allEvents.length === 0 && <p>no match!</p>}
     </>
   )
 }

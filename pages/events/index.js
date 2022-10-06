@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useRef } from 'react'
-import { events } from '../../pages/index'
+import { getAllEvents } from '../../dummy-data'
 
 export default function Events() {
   const router = useRouter()
@@ -38,11 +38,12 @@ export default function Events() {
         <button type="submit">filter</button>
       </form>
       <ul>
-        {events.map(({ id, title }) => (
-          <li key={`all-event-${id}`}>
-            <Link href={`/events/${id}`}>{title}</Link>
-          </li>
-        ))}
+        {getAllEvents() //
+          .map(({ id, title }) => (
+            <li key={`all-event-${id}`}>
+              <Link href={`/events/${id}`}>{title}</Link>
+            </li>
+          ))}
       </ul>
     </>
   )

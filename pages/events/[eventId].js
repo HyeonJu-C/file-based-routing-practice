@@ -10,9 +10,9 @@ export default function EventDetailPage() {
       {getEventById(eventId) //
         .map(({ id, title, date, location }) => (
           <section key={`detail-${id}`}>
-            <h1>{title}</h1>
-            <p>{date}</p>
-            <p>in {location}</p>
+            <h2>{title}</h2>
+            <time>{date}</time>
+            <address>in {location}</address>
           </section>
         ))}
     </section>

@@ -1,29 +1,14 @@
 import Link from 'next/link'
+import EventList from '../components/events/event-list'
+import Header from '../components/header'
 import { getFeaturedEvents } from '../dummy-data'
 
 export default function HomePage() {
+  const featuredEventList = getFeaturedEvents()
   return (
     <>
-      <header>
-        <ul>
-          <li>
-            <Link href="/">NextEvents</Link>
-          </li>
-          <li>
-            <Link href="/events">Browse All Events</Link>
-          </li>
-        </ul>
-      </header>
-      <section>
-        <ul>
-          {getFeaturedEvents() //
-            .map(({ id, title }) => (
-              <li key={`event-${id}`}>
-                <Link href={`/events/${id}`}>{title}</Link>
-              </li>
-            ))}
-        </ul>
-      </section>
+      <Header />
+      <EventList eventlist={featuredEventList} />
     </>
   )
 }

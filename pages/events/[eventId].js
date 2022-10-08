@@ -6,6 +6,7 @@ export default function EventDetailPage() {
   const router = useRouter()
   const { eventId } = router.query
   const [eventItem] = getEventById(eventId)
+  if (!eventItem) return <p>no match!</p>
 
   return <EventItem eventItem={eventItem} />
 }

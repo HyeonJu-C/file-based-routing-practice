@@ -1,20 +1,11 @@
 import { useRouter } from 'next/router'
+import EventItem from '../../components/events/event-item'
 import { getEventById } from '../../dummy-data'
 
 export default function EventDetailPage() {
   const router = useRouter()
-  console.log(router.query)
   const { eventId } = router.query
-  return (
-    <section>
-      {getEventById(eventId) //
-        .map(({ id, title, date, location }) => (
-          <section key={`detail-${id}`}>
-            <h2>{title}</h2>
-            <time>{date}</time>
-            <address>in {location}</address>
-          </section>
-        ))}
-    </section>
-  )
+  const [eventItem] = getEventById(eventId)
+
+  return <EventItem eventItem={eventItem} />
 }

@@ -1,17 +1,16 @@
-import { useRouter } from 'next/router'
 import { useRef } from 'react'
+import styles from './event-filter-form.module.css'
 
-export default function EventFilterForm() {
-  const router = useRouter()
+export default function EventFilterForm({ handleSearch }) {
   const yearRef = useRef()
   const monthRef = useRef()
   const handleSubmit = (event) => {
     event.preventDefault()
-    router.push(`/events/${yearRef.current.value}/${monthRef.current.value}`)
+    handleSearch(yearRef.current.value, monthRef.current.value)
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <label htmlFor="year">year</label>
       <select name="year" id="year" ref={yearRef}>
         <option value="2020">2020</option>
